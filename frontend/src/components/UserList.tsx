@@ -83,7 +83,7 @@ const UserList: React.FC = () => {
               color="primary"
               onClick={handleCreateUser}
             >
-              Add Users
+              Add User
             </Button>
           </Grid>
         </Grid>
