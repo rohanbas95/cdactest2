@@ -3,11 +3,11 @@ on:
   push:
     branches: [main, "fix/*", "feat/*"]
     paths: 
-      - frontend
+      - 'frontend/**'
   pull_request:
     branches: [main, "fix/*", "feat/*"]
     paths: 
-      - frontend
+      - 'frontend/**'
   workflow_dispatch:
 
 env:
