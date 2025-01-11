@@ -112,8 +112,8 @@ jobs:
             git status
             
             # Update the docker-compose file with the specific image tag
-            sed -i "s|my-prod:.*|my-prod:1.0.1|g" docker-compose.yaml
-            sed -i "s|my-user:.*|my-user:1.0.1|g" docker-compose.yaml
+            sed -i 's|my-prod:latest|my-prod:1.0.1|g' docker-compose.yaml
+            sed -i 's|my-user:latest|my-user:1.0.1|g' docker-compose.yaml
 
             docker-compose pull || exit 1
             docker-compose up -d || exit 1
