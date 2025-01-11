@@ -109,8 +109,9 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            # the set -e option will cause the script to exit immediately if a simple command exits with a non-zero status
             set -e
-            git clone https://github.com/rohanbas95/cdactest2.git
+            # git clone https://github.com/rohanbas95/cdactest2.git
             cd cdactest2
             git pull
             docker-compose pull || exit 1
