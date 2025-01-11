@@ -84,13 +84,13 @@ jobs:
         if: false
         working-directory: ./product-service
         run: |
-          docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO_URL }}/my-prod:1.4 --push .
+          docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO_URL }}/my-prod:1.5 --push .
 
       - name: 📦 Build and Push User-Service Image
         if: false
         working-directory: ./user-service
         run: |
-          docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO_URL }}/my-user:1.4 --push .
+          docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO_URL }}/my-user:1.5 --push .
 
       - name: 🐳 SSH and Update Docker Compose
         uses: appleboy/ssh-action@v0.1.10
@@ -109,3 +109,9 @@ jobs:
             ls
             docker-compose pull
             docker-compose up -d
+            sleep 10
+            # Test REST API endpoints
+            echo "Testing GET endpoint"
+            curl -f http://localhost:3001/api/users || exit 1
+            echo "Testing POST endpoint"
+            curl -f -X POST http://localhost:3001/api/users -d '{"name":"test","email":"test@example.com"}' -H "Content-Type: application/json" || exit 1
