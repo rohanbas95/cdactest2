@@ -1,24 +1,15 @@
-name: CI/CD Workflow
+name: Main CI/CD
 
 on:
   push:
-    branches: [main, "fix/*", "feat/*"]
-    paths: 
-      - 'frontend/**'
-      - 'product-service/**'
-      - 'user-service/**'
-  pull_request:
-    branches: [main, "fix/*", "feat/*"]
-    paths:
-      - 'frontend/**'
-      - 'product-service/**'
-      - 'user-service/**'
+    branches:
+      - main
   workflow_dispatch:
 
 env:
   NODE_VERSION: 20
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  IMAGE_TAG: 1.0.1
+  IMAGE_TAG: latest
 
 jobs:
   build:
