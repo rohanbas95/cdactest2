@@ -105,6 +105,7 @@ jobs:
             ls
             cd cdactest2
             git status
+            git pull
             pwd
             ls
             docker-compose pull
