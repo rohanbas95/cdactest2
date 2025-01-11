@@ -108,6 +108,8 @@ jobs:
             # git clone https://github.com/rohanbas95/cdactest2.git
             cd cdactest2
             git pull
+            git checkout ${{ github.ref }}
+            git status
             
             # Update the docker-compose file with the specific image tag
             sed -i "s|my-prod:.*|my-prod:1.0.1|g" docker-compose.yaml
