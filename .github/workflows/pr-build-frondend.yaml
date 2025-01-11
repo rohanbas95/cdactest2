@@ -111,8 +111,23 @@ jobs:
             docker-compose pull || exit 1
             docker-compose up -d || exit 1
             sleep 10
+
             # Test REST API endpoints
             echo "Testing GET endpoint"
             curl -f http://localhost:3001/api/users || exit 1
+
             echo "Testing POST endpoint"
-            curl -f -X POST http://localhost:3001/api/users -d '{"name":"test","email":"test@example.com"}' -H "Content-Type: application/json" || exit 1
+            RESPONSE=$(curl -s -f -X POST http://localhost:3001/api/users \
+              -d '{"name":"testpro","email":"test@example.com"}' \
+              -H "Content-Type: application/json") || exit 1
+
+            echo "POST Response: $RESPONSE"
+            USER_ID=$(echo $RESPONSE | jq -r '._id')
+
+            echo "Testing PUT endpoint"
+            curl -f -X PUT http://localhost:3001/api/users/$USER_ID \
+              -d '{"name":"test updated"}' \
+              -H "Content-Type: application/json" || exit 1
+
+            echo "Testing DELETE endpoint"
+            curl -f -X DELETE http://localhost:3001/api/users/$USER_ID || exit 1

@@ -34,18 +34,18 @@ app.get('/api/users', async (req: Request, res: Response) => {
   }
 });
 
-// app.post('/api/users', async (req: Request, res: Response) => {
-//   try {
-//     const client = await MongoClient.connect(mongoUrl, mongoClientOptions);
-//     const db = client.db(databaseName);
-//     const user = req.body;
-//     await db.collection("users").insertOne(user);
-//     client.close();
-//     res.json(user);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Failed to create user' });
-//   }
-// });
+app.post('/api/users', async (req: Request, res: Response) => {
+  try {
+    const client = await MongoClient.connect(mongoUrl, mongoClientOptions);
+    const db = client.db(databaseName);
+    const user = req.body;
+    await db.collection("users").insertOne(user);
+    client.close();
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create user' });
+  }
+});
 
 app.put('/api/users/:id', async (req: Request, res: Response) => {
   try {
