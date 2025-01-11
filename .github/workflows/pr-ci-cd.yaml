@@ -108,7 +108,7 @@ jobs:
             # git clone https://github.com/rohanbas95/cdactest2.git
             cd cdactest2
             git pull
-            git checkout ${{ github.ref }}
+            git checkout ${{ github.head_ref }}
             git status
             
             # Update the docker-compose file with the specific image tag
