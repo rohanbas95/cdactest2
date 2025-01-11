@@ -104,7 +104,9 @@ jobs:
             set -e
             # git clone https://github.com/rohanbas95/cdactest2.git
             cd cdactest2
+            git restore .
             git pull
+            git status
             docker-compose pull || exit 1
             docker-compose up -d || exit 1
             sleep 10
