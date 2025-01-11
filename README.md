@@ -159,6 +159,9 @@ docker run -d \
 -e ME_CONFIG_MONGODB_SERVER=mongodb \
 mongo-express
 ```
+19. `docker-compose -f docker-compose.yaml up -d`
+20. `docker-compose -f docker-compose.yaml down`
+21. `docker build -t my-prod:1.2 .`
 
 
 

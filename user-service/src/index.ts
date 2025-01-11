@@ -12,10 +12,11 @@ app.use(cors());
 
 // MongoDB Connection
 const mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-// const mongoUrlLocal = "mongodb://admin:password@localhost:27017";  // this is for local docker
-const mongoUrlLocal = "mongodb://localhost:27017";
+const mongoUrlLocal = "mongodb://admin:password@localhost:27017";  // this is for local docker
+// const mongoUrlLocal = "mongodb://localhost:27017";
 const mongoUrlDocker = "mongodb://admin:password@mongodb";
-const mongoUrl = process.env.DOCKER_ENV ? mongoUrlDocker : mongoUrlLocal;
+let mongswitch = true;
+const mongoUrl = mongswitch ? mongoUrlDocker : mongoUrlLocal;
 
 // Database name
 const databaseName = "userdb";
@@ -78,7 +79,7 @@ app.delete('/api/users/:id', async (req: Request, res: Response) => {
 
 app.get('/api/users/:id/products', async (req, res) => {
   try {
-    const response = await axios.get('http://localhost:3002/api/products');
+    const response = await axios.get('http://13.234.30.47:3002/api/products');
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch products' });
