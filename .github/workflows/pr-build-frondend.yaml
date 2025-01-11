@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🔥 Setup NodeJS
-        if: false
+        if: true
         uses: actions/setup-node@v4
         with:
           registry-url: "https://npm.pkg.github.com"
@@ -33,28 +33,28 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: 🏗️ Build Frontend
-        if: false
+        if: true
         working-directory: ./frontend
         run: |
           npm install
           npm run build
 
       - name: 🏗️ Build Product-Service
-        if: false
+        if: true
         working-directory: ./product-service
         run: |
           npm install
           npm run build
 
       - name: 🏗️ Build User-Service
-        if: false
+        if: true
         working-directory: ./user-service
         run: |
           npm install
           npm run build
 
       - name: 🚀 Deploy Frontend to S3
-        if: false
+        if: true
         uses: jakejarvis/s3-sync-action@v0.5.1
         with:
           args: --acl public-read --follow-symlinks --delete
@@ -73,21 +73,21 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: 🔧 Setup Docker Buildx
-        if: false
+        if: true
         uses: docker/setup-buildx-action@v2
 
       - name: 🔑 Login to ECR
-        if: false
+        if: true
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: 📦 Build and Push Product-Service Image
-        if: false
+        if: true
         working-directory: ./product-service
         run: |
           docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO_URL }}/my-prod:1.5 --push .
 
       - name: 📦 Build and Push User-Service Image
-        if: false
+        if: true
         working-directory: ./user-service
         run: |
           docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO_URL }}/my-user:1.5 --push .
