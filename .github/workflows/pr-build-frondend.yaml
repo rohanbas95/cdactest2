@@ -101,8 +101,11 @@ jobs:
           script: |
             pwd
             ls
+            git clone https://github.com/rohanbas95/cdactest2.git
+            ls
             cd cdactest2
-            git pull
             git status
+            pwd
+            ls
             docker-compose pull
             docker-compose up -d
