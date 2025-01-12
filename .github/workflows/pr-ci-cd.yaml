@@ -108,6 +108,7 @@ jobs:
             # git clone https://github.com/rohanbas95/cdactest2.git
             cd cdactest2
             git restore .
+            git checkout main
             git pull
             git checkout ${{ github.head_ref }}
             git status
