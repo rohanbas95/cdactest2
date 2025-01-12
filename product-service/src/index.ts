@@ -62,18 +62,18 @@ app.put('/api/products/:id', async (req: Request, res: Response) => {
   }
 });
 
-app.delete('/api/products/:id', async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const client = await MongoClient.connect(mongoUrl, mongoClientOptions);
-    const db = client.db(databaseName);
-    await db.collection("products").deleteOne({ _id: new ObjectId(id) });
-    client.close();
-    res.sendStatus(204);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to delete product' });
-  }
-});
+// app.delete('/api/products/:id', async (req: Request, res: Response) => {
+//   try {
+//     const { id } = req.params;
+//     const client = await MongoClient.connect(mongoUrl, mongoClientOptions);
+//     const db = client.db(databaseName);
+//     await db.collection("products").deleteOne({ _id: new ObjectId(id) });
+//     client.close();
+//     res.sendStatus(204);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Failed to delete product' });
+//   }
+// });
 
 // Example: Get user info for a product
 app.get('/api/products/:id/user', async (req: Request, res: Response) => {
