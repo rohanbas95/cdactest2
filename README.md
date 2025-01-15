@@ -163,7 +163,20 @@ mongo-express
 20. `docker-compose -f docker-compose.yaml down`
 21. `docker build -t my-prod:1.2 .`
 
-
+# setup docker on ec2
+```bash
+sudo dnf update -y
+sudo dnf install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+sudo rm /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo usermod -aG docker $USER
+groups $USER
+sudo systemctl restart docker
+```
 
 
 # terraform commands
