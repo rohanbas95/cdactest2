@@ -19,8 +19,8 @@ let mongswitch = true;
 const mongoUrl = mongswitch ? mongoUrlDocker : mongoUrlLocal;
 const databaseName = "productdb";
 
-// REST API
-app.ge('/api/products', async (req: Request, res: Response) => {
+// REST API test
+app.get('/api/products', async (req: Request, res: Response) => {
   try {
     const client = await MongoClient.connect(mongoUrl, mongoClientOptions);
     const db = client.db(databaseName);
